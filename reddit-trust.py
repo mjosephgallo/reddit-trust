@@ -42,11 +42,11 @@ def psaw_time_converter(timeframe):
 def timestamp():
     return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
-# def plot_img(sub_data,plot_func,pdf):
-#     plot = plot_func(sub_data)
-#     plt.tight_layout()
-#     pdf.savefig(plot)
-#     plt.close(plot)
+def plot_img(sub_data,plot_func,pdf):
+    plot = plot_func(sub_data)
+    plt.tight_layout()
+    pdf.savefig(plot)
+    plt.close(plot)
 
 def main(argv):
     args = parse_args(argv)
