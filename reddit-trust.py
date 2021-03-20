@@ -21,7 +21,7 @@ def parse_args(argv):
     parser = argparse.ArgumentParser(
         description='Analyze a subreddit\'s most popular authors, submission titles and comments.')
     parser.add_argument('subreddit', type=str, help='Subreddit name')
-    parser.add_argument('timeframe', default='day', type=str, choices=['day', 'month', 'year','all'],
+    parser.add_argument('timeframe', default='day', type=str, choices=['day', 'week', 'month', 'year','all'],
         help='The timeframe of top posts that are analyzed. Defaults to the last day')
     parser.add_argument('--comments', action='store_true',help='Include comment data in report')
     args = parser.parse_args(argv)
