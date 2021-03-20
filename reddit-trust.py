@@ -20,9 +20,10 @@ def parse_args(argv):
     import argparse
     parser = argparse.ArgumentParser(
         description='Analyze a subreddit\'s most popular authors, submission titles and comments.')
-    parser.add_argument('subreddit', type=str, nargs='?', help='Subreddit name')
-    parser.add_argument('timeframe', default='day', type=str, nargs='?', choices=['day', 'month', 'year','all'],
+    parser.add_argument('subreddit', type=str, help='Subreddit name')
+    parser.add_argument('timeframe', default='day', type=str, choices=['day', 'month', 'year','all'],
         help='The timeframe of top posts that are analyzed. Defaults to the last day')
+    parser.add_argument('--comments', action='store_true',help='Include comment data in report')
     args = parser.parse_args(argv)
     return args
 
@@ -89,11 +90,12 @@ def main(argv):
         pdf.savefig(titles)
         plt.close(titles)
 
-        print("{} - Creating comment wordcloud".format(timestamp()))
-        comments = comments_wordcloud(praw_data)
-        plt.tight_layout()
-        pdf.savefig(comments)
-        plt.close(comments)
+        if args.comments:
+            print("{} - Creating comment wordcloud".format(timestamp()))
+            comments = comments_wordcloud(praw_data)
+            plt.tight_layout()
+            pdf.savefig(comments)
+            plt.close(comments)
         
         print("{} - Report Complete".format(timestamp()))
 
