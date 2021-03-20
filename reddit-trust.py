@@ -43,7 +43,7 @@ def psaw_time_converter(timeframe):
 def timestamp():
     return datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
-def plot_img(sub_data,plot_func,pdf):
+def plot_img(plot_func,sub_data,pdf):
     plot = plot_func(sub_data)
     plt.tight_layout()
     pdf.savefig(plot)
@@ -67,35 +67,20 @@ def main(argv):
         plt.close()
 
         print("{} - Plotting age of author accounts".format(timestamp()))
-        age_plot = accts_age_plot(praw_data)
-        plt.tight_layout()
-        pdf.savefig(age_plot)
-        plt.close(age_plot)
+        plot_img(accts_age_plot,praw_data,pdf)
 
         print("{} - Plotting number of posts by author".format(timestamp()))
-        count_plot = accts_count_plot(praw_data)
-        plt.tight_layout()
-        pdf.savefig(count_plot)
-        plt.close(count_plot)
+        plot_img(accts_count_plot,praw_data,pdf)
 
         print("{} - Plotting top links".format(timestamp()))
-        links = top_links_plot(praw_data)
-        plt.tight_layout()
-        pdf.savefig(links)
-        plt.close(links)
+        plot_img(top_links_plot,praw_data,pdf)
 
         print("{} - Creating title wordcloud".format(timestamp()))
-        titles = titles_wordcloud(praw_data)
-        plt.tight_layout()
-        pdf.savefig(titles)
-        plt.close(titles)
+        plot_img(titles_wordcloud,praw_data,pdf)
 
         if args.comments:
             print("{} - Creating comment wordcloud".format(timestamp()))
-            comments = comments_wordcloud(praw_data)
-            plt.tight_layout()
-            pdf.savefig(comments)
-            plt.close(comments)
+            plot_img(comments_wordcloud,praw_data,pdf)
         
         print("{} - Report Complete".format(timestamp()))
 
