@@ -98,8 +98,8 @@ def main(argv):
         print("{} - Report Complete".format(timestamp()))
 
 # Returns a list of top submissions from a subreddit in a time frame, sorted by submission score
-def top_submissions(praw_client, sub_name, time_frame):
-    sub_data = [subm for subm in praw_client.subreddit(str(sub_name)).top(str(time_frame),limit=None)]
+def top_submissions(praw_client, sub_name, timeframe):
+    sub_data = [subm for subm in praw_client.subreddit(str(sub_name)).top(str(timeframe),limit=None)]
     sub_data.sort(key=lambda x: x.score, reverse=True)
     return sub_data
 
@@ -197,7 +197,7 @@ def titles_wordcloud(sub_data):
 def comments_body(sub_data):
     comments = []
     for subm in sub_data:
-        subm.comments.replace_more(limit=1)
+        subm.comments.replace_more(limit=0)
         comments.extend([comment.body for comment in subm.comments.list() if comment.score > 10])
     return comments
 
