@@ -14,11 +14,12 @@ The goal of reddit-trust is to break down and analyze the activity of a particul
 
 ## Usage
 ```
-reddit-trust.py <subreddit> <timeframe>
+reddit-trust.py <subreddit> <timeframe> <--comments>
 ```
 Examples
 ```
 reddit-trust.py bettafish year
 reddit-trust.py news+videos month
 reddit-trust.py redditdev
+reddit-trust.py bettafish year --comments
 ```
